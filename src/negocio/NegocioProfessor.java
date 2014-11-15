@@ -21,7 +21,7 @@ public class NegocioProfessor {
             retorno = false;
             objForm.jLabelNomeErro.setVisible(true);
         }
-        if(objProfessor.getEmail().isEmpty()){
+        if(objProfessor.getEmail().isEmpty() ||!verificadorEmail(objProfessor.getEmail())){
             retorno =  false;
             objForm.jLabelEmailErro.setVisible(true);
         }
@@ -87,8 +87,7 @@ public class NegocioProfessor {
    }
     public static boolean verificadorEmail(String email)
     {
-        
-        return email.matches("[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+") ;
+        return email.matches("([A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+)") ;
     }
     public boolean excluir(FormCadastroProfessor form_professor)
     {
@@ -107,10 +106,10 @@ public class NegocioProfessor {
         String nome = form_professor.jTextNome.getText();
         String email = form_professor.jTextEmail.getText();
         String cpf = form_professor.jTextCpf.getText();
-       //int idmateria = form_professor.jComboBoxMaterias.
+        //int idmateria = form_professor.jComboBoxMaterias.
          //terminarrr isso aquii
         
-        Professor objProfessor = new Professor(nome, email, cpf, 0);
+        Professor objProfessor = new Professor(nome, email, cpf, 100);
         NegocioProfessor objNegocioCliente = new NegocioProfessor();
         if(objNegocioCliente.VerificadorProfessor(form_professor, objProfessor))
         {

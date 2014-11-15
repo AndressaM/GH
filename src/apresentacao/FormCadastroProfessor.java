@@ -12,7 +12,7 @@ import banco.FactoryMetody.FactoryBdProfessor;
 import banco.FactoryMetody.FactoryMetody;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-import javafx.scene.control.SelectionMode;
+//import javafx.scene.control.SelectionMode;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -357,6 +357,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
         this.jTextEmail.setText("");
         this.jTextCpf.setText("");
         this.jComboBoxMaterias.setSelectedIndex(0);
+        
     }
     
     private void jTableProfessoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProfessoresMouseClicked
@@ -378,6 +379,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
         {
             JOptionPane.showMessageDialog(null, "Professor não excluido!!!\nErro!!");
         }
+        jTextCpf.setEditable(true);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jComboBoxMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMateriasActionPerformed

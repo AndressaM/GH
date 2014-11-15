@@ -15,7 +15,7 @@ public class Conexao {
             String stringConexao = "jdbc:postgresql://localhost:5432/";
             String nomeBanco = "gerenciador";
             String usuarioBanco = "postgres";
-            String senhaBanco = "senha";
+            String senhaBanco = "123456";
 
             Class.forName("org.postgresql.Driver");
 

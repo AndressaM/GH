@@ -13,7 +13,7 @@ import banco.FactoryMetody.FactoryBdMateria;
 import banco.FactoryMetody.FactoryMetody;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import jdk.nashorn.internal.ir.ForNode;
+//import jdk.nashorn.internal.ir.ForNode;
 import objeto.Materia;
 
 /**
