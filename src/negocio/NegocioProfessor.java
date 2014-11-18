@@ -105,11 +105,18 @@ public class NegocioProfessor {
         String nome = form_professor.jTextNome.getText();
         String email = form_professor.jTextEmail.getText();
         String cpf = form_professor.jTextCpf.getText();
+<<<<<<< HEAD
         Materia idmateria = (Materia)form_professor.jComboBoxMaterias.getSelectedItem();
         int id = idmateria.getId();
        
         
         Professor objProfessor = new Professor(nome, email, cpf,id );
+=======
+        //int idmateria = form_professor.jComboBoxMaterias.
+         //terminarrr isso aquii
+        
+        Professor objProfessor = new Professor(nome, email, cpf, 100);
+>>>>>>> origin/master
         NegocioProfessor objNegocioCliente = new NegocioProfessor();
         if(objNegocioCliente.VerificadorProfessor(form_professor, objProfessor))
         {
