@@ -91,4 +91,23 @@ public class BdProfessorDAO implements InterfaceDAO<Professor>{
         }
         return obj_retorno;
     }
+    public boolean atualizar(Professor obj_professor)
+    {
+        Conexao conexao = new Conexao();
+        String sql="UPDATE professor set nome = ?, email=?, idmateria=? WHERE cpf=?;";
+        try{
+            PreparedStatement pc=conexao.getConnection().prepareStatement(sql);
+            pc.setString(1, obj_professor.getNome());
+            pc.setString(2, obj_professor.getEmail());     
+            pc.setInt(3, obj_professor.getIdMateria());
+            pc.setString(4, obj_professor.getCpf());
+            pc.execute();
+            conexao.getConnection().close();
+            return true;
+        }catch(SQLException ex) {
+           ex.printStackTrace();
+           return false;
+        }
+        
+    }
 }

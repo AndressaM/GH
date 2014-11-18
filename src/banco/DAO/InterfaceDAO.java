@@ -17,4 +17,5 @@ public interface InterfaceDAO<T> {
     public boolean deletar(T cpf);
     public ArrayList<T> listar();
     public T procurar(T cpf);
+    public boolean atualizar(T objeto);
 }

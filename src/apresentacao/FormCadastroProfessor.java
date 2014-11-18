@@ -12,7 +12,7 @@ import banco.FactoryMetody.FactoryBdProfessor;
 import banco.FactoryMetody.FactoryMetody;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-import javafx.scene.control.SelectionMode;
+//import javafx.scene.control.SelectionMode;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -80,6 +80,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
         jLabelNomeErro = new javax.swing.JLabel();
         jLabelCpfErro = new javax.swing.JLabel();
         jLabelEmailErro = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableProfessores = new javax.swing.JTable();
 
@@ -188,6 +189,13 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
         jLabelEmailErro.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEmailErro.setText("Email inválido");
 
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -217,6 +225,8 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSalvar)))
@@ -256,7 +266,9 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButtonLimpar)
                                 .addComponent(jButtonSalvar))
-                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonExcluir)
+                                .addComponent(jButton1)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,7 +326,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -357,6 +369,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
         this.jTextEmail.setText("");
         this.jTextCpf.setText("");
         this.jComboBoxMaterias.setSelectedIndex(0);
+        
     }
     
     private void jTableProfessoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProfessoresMouseClicked
@@ -378,6 +391,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
         {
             JOptionPane.showMessageDialog(null, "Professor não excluido!!!\nErro!!");
         }
+        jTextCpf.setEditable(true);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jComboBoxMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMateriasActionPerformed
@@ -390,6 +404,18 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
     private void jTextCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCpfActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         NegocioProfessor negocioProfessor = new NegocioProfessor();
+        if(negocioProfessor.atualizar(this)){
+            JOptionPane.showMessageDialog(null, "Professor atualizado!!");
+            preencherTabela();
+            limpar();
+        }else{
+            JOptionPane.showMessageDialog(null, "Professor nãoo atualizado!!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void preencherTabela()
     {
@@ -424,6 +450,7 @@ public class FormCadastroProfessor extends javax.swing.JInternalFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarCpf;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonLimpar;

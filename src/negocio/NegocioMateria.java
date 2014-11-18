@@ -13,7 +13,7 @@ import banco.FactoryMetody.FactoryBdMateria;
 import banco.FactoryMetody.FactoryMetody;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import jdk.nashorn.internal.ir.ForNode;
+//import jdk.nashorn.internal.ir.ForNode;
 import objeto.Materia;
 
 /**
@@ -22,6 +22,7 @@ import objeto.Materia;
  */
 public class NegocioMateria {
     
+    BdMateriaDAO objBdMateria = new BdMateriaDAO();
     public boolean VerificadorMateria(FormCadastroMateria form, Materia obj_Materia)
     {
         FactoryMetody BdMateria = new FactoryBdMateria();
@@ -32,10 +33,7 @@ public class NegocioMateria {
             retorno = false;
             form.jLabelNomeErro.setVisible(true);
         }
-        if(retorno)
-        {
-            retorno = obj_BdMateria.salvar(obj_Materia);
-        }
+        
         return retorno;
     }
     public void cadastrar(FormCadastroMateria form_materia)
@@ -92,6 +90,34 @@ public class NegocioMateria {
             retorno = obj_Bdmateria.deletar(new Materia(Integer.parseInt(form_materia.jTextId.getText())));            
         }
         return retorno;
+    }
+    public boolean atualizar(FormCadastroMateria form_Materia){
+         
+         BdMateriaDAO bdMateria = new BdMateriaDAO();
+         String nome = form_Materia.jTextNome.getText();
+         String descricao =form_Materia.jTextAreaDescricao.getText();
+         int horasAula = Integer.parseInt(form_Materia.jTextHorasAula.getText());
+         int id = Integer.parseInt(form_Materia.jTextId.getText());
+         boolean retorno = false;
+         
+         Materia materia = new Materia(id, nome, descricao, horasAula);
+         
+         if(this.VerificadorMateria(form_Materia,materia))
+        {
+            retorno = bdMateria.atualizar(materia);
+        }
+        return retorno;
+               
+    }
+    public boolean salvar(FormCadastroMateria form_materia, Materia objMateria)
+    {
+        boolean retorno = false;
+                
+    if(this.VerificadorMateria(form_materia, objMateria))
+    {
+        retorno = this.objBdMateria.salvar(objMateria);
+    }
+       return retorno;
     }
     
         

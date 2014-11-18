@@ -21,7 +21,7 @@ public class NegocioProfessor {
             retorno = false;
             objForm.jLabelNomeErro.setVisible(true);
         }
-        if(objProfessor.getEmail().isEmpty()){
+        if(objProfessor.getEmail().isEmpty() ||!verificadorEmail(objProfessor.getEmail())){
             retorno =  false;
             objForm.jLabelEmailErro.setVisible(true);
         }
@@ -31,8 +31,7 @@ public class NegocioProfessor {
             retorno = false;
             objForm.jLabelCpfErro.setVisible(true);
         }
-        if(retorno)
-            retorno = objBdProfessor.salvar(objProfessor);
+        
         return retorno;
     }
     static public boolean VerificadorCPF (String strCpf )
@@ -87,8 +86,7 @@ public class NegocioProfessor {
    }
     public static boolean verificadorEmail(String email)
     {
-        
-        return email.matches("[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+") ;
+        return email.matches("([A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+)") ;
     }
     public boolean excluir(FormCadastroProfessor form_professor)
     {
@@ -107,10 +105,11 @@ public class NegocioProfessor {
         String nome = form_professor.jTextNome.getText();
         String email = form_professor.jTextEmail.getText();
         String cpf = form_professor.jTextCpf.getText();
-       //int idmateria = form_professor.jComboBoxMaterias.
-         //terminarrr isso aquii
+        Materia idmateria = (Materia)form_professor.jComboBoxMaterias.getSelectedItem();
+        int id = idmateria.getId();
+       
         
-        Professor objProfessor = new Professor(nome, email, cpf, 0);
+        Professor objProfessor = new Professor(nome, email, cpf,id );
         NegocioProfessor objNegocioCliente = new NegocioProfessor();
         if(objNegocioCliente.VerificadorProfessor(form_professor, objProfessor))
         {
@@ -153,7 +152,35 @@ public class NegocioProfessor {
             form_professor.jComboBoxMaterias.addItem(obj_materia);
            
         }
+        
 }
+    public boolean salvar(FormCadastroProfessor form_cadastro, Professor ObjProfessor){
+      boolean retorno = false;
+                
+    if(this.VerificadorProfessor(form_cadastro, ObjProfessor))
+    {
+        retorno = this.objBdProfessor.salvar(ObjProfessor);
+    }
+       return retorno;
+    }
+    public boolean atualizar(FormCadastroProfessor form_professor){
+        
+        BdProfessorDAO obj_BdProfessor = new BdProfessorDAO();
+        String cpf = form_professor.jTextCpf.getText();
+        String email = form_professor.jTextEmail.getText();
+        String nome = form_professor.jTextNome.getText();
+        boolean retorno = false;
+        
+        Materia objMateria = (Materia)form_professor.jComboBoxMaterias.getSelectedItem();
+        int id = objMateria.getId();
+        Professor nProfessor = new Professor(nome, email, cpf, id);
+        if(this.VerificadorProfessor(form_professor,nProfessor))
+        {
+            retorno = obj_BdProfessor.atualizar(nProfessor);
+        }
+                             
+        return retorno;
+    }
 
 }
 

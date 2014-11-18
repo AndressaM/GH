@@ -106,6 +106,26 @@ public class BdMateriaDAO implements InterfaceDAO<Materia>{
             return null;
         }
     }
+    @Override
+    public boolean atualizar(Materia objeto) {
+        
+        Conexao conexao = new Conexao();
+        String sql = "UPDATE materia set nome = ?, descricao=?, cargahoraria=? WHERE id=?;";
+        try{
+            PreparedStatement pc=conexao.getConnection().prepareStatement(sql);
+            pc.setString(1, objeto.getNome());
+            pc.setString(2, objeto.getDescricao());     
+            pc.setInt(3, objeto.getCargahoraria());
+            pc.setInt(4, objeto.getId());
+            pc.execute();
+            conexao.getConnection().close();
+            return true;
+        }catch(SQLException ex) {
+           ex.printStackTrace();
+           return false;
+        }
+    }
 }
     
+
     
