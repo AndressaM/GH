@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package banco.DAO;
+package banco.FactoryMetody;
 
+import banco.DAO.BdTurmaDAO;
+import banco.DAO.InterfaceDAO;
 import java.util.ArrayList;
 
 /**
  *
  * @author pedro_000
  */
-public interface InterfaceDAO<T> {
-    
-    public boolean salvar(T objeto);
-    public boolean deletar(T id);
-    public ArrayList<T> listar();
-    public T procurar(T id);
-    public boolean atualizar(T objeto);
+public class FactoryBdTurma implements FactoryMetody{
+    @Override
+    public InterfaceDAO criar_DAO_BD() {
+       return new BdTurmaDAO();
+    }
+
 }

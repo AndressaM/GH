@@ -42,10 +42,11 @@ public class NegocioMateria {
         int horasAulas = Integer.parseInt(form_materia.jTextHorasAula.getText());
         int id = Integer.parseInt(form_materia.jTextId.getText());
         String descricao = form_materia.jTextAreaDescricao.getText();
-        Materia obj_materia = new Materia(id, nome, descricao, horasAulas);
-
+        Materia obj_materia = new Materia(id, nome, descricao, horasAulas,100);
+        NegocioMateria negocioMateria = new NegocioMateria();
         if(this.VerificadorMateria(form_materia, obj_materia))
-        {
+        {   
+            negocioMateria.salvar(form_materia, obj_materia);
             JOptionPane.showMessageDialog(null, "Materia cadastrado com sucesso!!");
             form_materia.preencherTabela();
         }
@@ -100,7 +101,7 @@ public class NegocioMateria {
          int id = Integer.parseInt(form_Materia.jTextId.getText());
          boolean retorno = false;
          
-         Materia materia = new Materia(id, nome, descricao, horasAula);
+         Materia materia = new Materia(id, nome, descricao, horasAula,100);
          
          if(this.VerificadorMateria(form_Materia,materia))
         {

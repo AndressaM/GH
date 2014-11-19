@@ -5,6 +5,8 @@
  */
 package objeto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author pedro_000
@@ -15,6 +17,7 @@ public class Professor {
     private String email;
     private String cpf;
     private int idMateria;
+    public ArrayList<Integer> restricoes;
 
     public Professor(String nome, String email, String cpf, int idMateria) {
         this.nome = nome;
@@ -22,11 +25,11 @@ public class Professor {
         this.cpf = cpf;
         this.idMateria = idMateria;
     }
-    
-    public Professor(String cpf){
-        this.cpf = cpf;
+    public Professor (String cpf)
+    {
+        this.cpf=cpf;
     }
-
+    
     public String getNome() {
         return nome;
     }

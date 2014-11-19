@@ -8,6 +8,7 @@ package apresentacao;
 import banco.DAO.BdMateriaDAO;
 import banco.DAO.InterfaceDAO;
 import banco.FactoryMetody.FactoryBdMateria;
+import banco.FactoryMetody.FactoryBdTurma;
 import banco.FactoryMetody.FactoryMetody;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
         limparErro();
         preencherTabela();
         this.setVisible(true);
+        this.jComboTurma.removeAllItems();
     }
     
     public void limparErro()
@@ -75,6 +77,8 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
         jButtonBuscarCpf = new javax.swing.JButton();
         jTextFieldBuscaId = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jComboTurma = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -95,12 +99,6 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
         jLabel1.setText("Nome:");
 
         jLabel2.setText("ID:");
-
-        jTextId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextIdActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Horas Aula:");
 
@@ -194,6 +192,15 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jLabel5.setText("Turma:");
+
+        jComboTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboTurmaActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,26 +239,31 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
                         .addComponent(jLabelIdErro)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextAreaDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSalvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonLimpar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextAreaDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButtonSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonLimpar)
-                .addGap(77, 77, 77))
+                        .addContainerGap()
+                        .addComponent(jLabel5)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +279,7 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
                             .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelNomeErro)
                             .addComponent(jLabelIdErro))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextHorasAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,16 +288,18 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextAreaDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonLimpar)
-                        .addComponent(jButtonSalvar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton1)))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLimpar)
+                    .addComponent(jButtonSalvar)
+                    .addComponent(jButton3)
+                    .addComponent(jButton1))
                 .addGap(34, 34, 34))
         );
 
@@ -304,13 +318,13 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.limparErro();
         this.limparCampos();
-        jTextId.setEditable(true);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
         NegocioMateria obj_NegocioMateria = new NegocioMateria();
         obj_NegocioMateria.cadastrar(this);
+        
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -325,9 +339,20 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscaIdActionPerformed
 
+    private void jComboTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTurmaActionPerformed
+        // TODO add your handling code here:
+        FactoryMetody FactoryBd = new FactoryBdTurma();
+        InterfaceDAO InterfaceBd = FactoryBd.criar_DAO_BD();
+        ArrayList<Turma> lista = InterfaceBd.listar();
+        for(Turma objTurma : lista)
+        {
+            this.jComboTurma.addItem(objTurma);
+        }
+        
+    }//GEN-LAST:event_jComboTurmaActionPerformed
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
         NegocioMateria obj_NegocioMateria= new NegocioMateria();
         
         if(obj_NegocioMateria.excluir(this))
@@ -340,14 +365,7 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
         {
             JOptionPane.showMessageDialog(null, "Materia não excluida!!!\nErro!!!");
         }
-        
-        
-        
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextIdActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -364,7 +382,8 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
 
         public void preencherTabela()
     {
-        BdMateriaDAO obj_BdMateria = new BdMateriaDAO();
+        FactoryMetody FactoryBd = new FactoryBdMateria();
+        InterfaceDAO obj_BdMateria = FactoryBd.criar_DAO_BD();
         ArrayList<Materia> list_Materia= obj_BdMateria.listar();
         
         DefaultTableModel Model = new DefaultTableModel(){  
@@ -375,13 +394,16 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
     };  
         
         String [] colunas = new String[] { 
-                    "Id", "Nome", "Carga Horaria", "Descrição" };
+                    "Id", "Nome", "Carga Horaria", "Descrição", "Turma" };
         Model.setColumnIdentifiers(colunas);
+        FactoryBd=new FactoryBdTurma();
+        obj_BdMateria=FactoryBd.criar_DAO_BD();
         for(Materia obj_materia : list_Materia)
         {
-            System.out.println();
+            Turma objTurma = (Turma) obj_BdMateria.procurar(new Turma(obj_materia.getIdTurma()));
+            System.out.println(objTurma.getDescricao());
                 Model.addRow(new Object[] {obj_materia.getId(), 
-                    obj_materia.getNome(), obj_materia.getCargahoraria(), obj_materia.getDescricao()}
+                    obj_materia.getNome(), obj_materia.getCargahoraria(), obj_materia.getDescricao(), objTurma.getNome()}
                     );
         }
         jTableMateria.setModel(Model);
@@ -399,10 +421,12 @@ public class FormCadastroMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonBuscarCpf;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox jComboTurma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     public javax.swing.JLabel jLabelHorasAulasErro;
     public javax.swing.JLabel jLabelIdErro;

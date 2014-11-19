@@ -53,7 +53,7 @@ public class BdMateriaDAO implements InterfaceDAO<Materia>{
                 String nome = objResultSet.getString("nome");
                 String descricao = objResultSet.getString("descricao");
                 int cargaHoraria = objResultSet.getInt("cargahoraria");
-                Materia obj_materia = new Materia (id, nome, descricao, cargaHoraria);
+                Materia obj_materia = new Materia (id, nome, descricao, cargaHoraria,100);
                 listMateria.add(obj_materia);
             }
             conexao.getConnection().close();
@@ -96,7 +96,7 @@ public class BdMateriaDAO implements InterfaceDAO<Materia>{
                 String nome = objResultSet.getString("nome");
                 String descricao = objResultSet.getString("descricao");
                 int cargaHoraria = objResultSet.getInt("cargahoraria");
-                Materia obj_materia = new Materia (id, nome, descricao, cargaHoraria);
+                Materia obj_materia = new Materia (id, nome, descricao, cargaHoraria,100);
                 listMateria.add(obj_materia);
             }
             conexao.getConnection().close();
